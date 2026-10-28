@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>João Vitor Furtado de Sousa</title>
+  <meta name="description" content="Desenvolvedor de software em Juiz de Fora. C++, visão computacional e agentes de IA.">
+  <meta property="og:title" content="João Vitor Furtado de Sousa">
+  <meta property="og:description" content="Desenvolvedor de software. C++, visão computacional e agentes de IA.">
+  <meta property="og:image" content="assets/kernel-panic.jpeg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0b0d'/%3E%3Crect x='9' y='7' width='5' height='18' fill='%23e8e4d8'/%3E%3Crect x='9' y='20' width='14' height='5' fill='%23e8e4d8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <img class="hero-img" src="assets/kernel-panic.jpeg" alt="Foto de um monitor mostrando um kernel panic do Linux, com um boneco de acrílico apontando para o texto" width="1600" height="533">
+  <div class="hero-scrim"></div>
+
+  <nav class="nav" aria-label="Navegação principal">
+    <a href="#projetos"><span lang="pt-BR">Projetos</span><span lang="en">Projects</span></a>
+    <a href="#sobre"><span lang="pt-BR">Sobre</span><span lang="en">About</span></a>
+    <a href="#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
+    <button class="lang" type="button" id="lang-toggle" aria-label="Mudar idioma / Switch language">
+      <span lang="pt-BR">EN</span><span lang="en">PT</span>
+    </button>
+  </nav>
+
+  <div class="hero-text">
+    <h1 class="name">João Vitor<span class="cursor" aria-hidden="true"></span></h1>
+    <p class="fullname">Furtado de Sousa</p>
+    <p class="tagline" lang="pt-BR">Desenvolvedor de software. Gosto de programas que encostam no mundo físico: câmeras, aeroportos, agentes de IA.</p>
+    <p class="tagline" lang="en">Software developer. I like programs that touch the physical world: cameras, airports, AI agents.</p>
+  </div>
+</header>
+
+<main>
+
+  <section class="section" id="sobre">
+    <h2 class="section-title"><span lang="pt-BR">Sobre</span><span lang="en">About</span></h2>
+    <div class="section-body prose">
+      <p lang="pt-BR">Estudo Engenharia Computacional na UFJF, em Juiz de Fora, com formatura prevista para dezembro de 2028. Faço estágio em desenvolvimento de software numa empresa que cria sistemas para a operação de aeroportos: visão computacional com câmeras PTZ, gestão de pessoal, billing e rádio sobre IP.</p>
+      <p lang="en">I'm a Computational Engineering student at UFJF in Juiz de Fora, Brazil, graduating in December 2028. I work as a software development intern at a company that builds systems for airport operations: PTZ-camera computer vision, staff management, billing and radio over IP.</p>
+
+      <p lang="pt-BR">Fora do trabalho, construo projetos pessoais com agentes de IA, visão computacional e automação, quase sempre rodando em Linux, em casa. Também competo em maratonas de programação, onde aprendi quase tudo que sei sobre algoritmos e desempenho.</p>
+      <p lang="en">Outside work I build personal projects with AI agents, computer vision and automation, usually running on Linux at home. I also compete in programming marathons, which taught me most of what I know about algorithms and performance.</p>
+
+      <p lang="pt-BR">Estou aberto a estágios e vagas remotas, no Brasil ou fora.</p>
+      <p lang="en">I'm open to internships and remote roles, in Brazil or abroad.</p>
+    </div>
+  </section>
+
+  <section class="section" id="projetos">
+    <h2 class="section-title"><span lang="pt-BR">Projetos</span><span lang="en">Projects</span></h2>
+    <div class="section-body">
+
+      <article class="project featured">
+        <h3 class="project-name">Guará</h3>
+        <p class="project-stack">Python, Gemini, MCP, openWakeWord, Home Assistant</p>
+        <div class="project-desc">
+          <p lang="pt-BR">Assistente pessoal de código aberto que roda 24 horas num computador velho, em casa. Você fala com ele pelo Telegram ou chama em voz alta: <q>Ô, Guará.</q> São cerca de 9.000 linhas de Python em 17 módulos de ferramentas.</p>
+          <p lang="en">An open-source personal assistant that runs around the clock on a spare computer at home. You talk to it on Telegram or call it out loud: <q>Ô, Guará.</q> About 9,000 lines of Python across 17 tool modules.</p>
+
+          <ul lang="pt-BR">
+            <li>Palavra de ativação treinada por mim, com 93,8% de acerto em áudio limpo e cerca de 2 alarmes falsos por hora. Treinei com vozes sintéticas, áudio real do quarto e palavras parecidas como <q>guaraná</q> e <q>agora</q>.</li>
+            <li>Loop de function calling com teto de rodadas: ao chegar nele, o Guará responde com o que já tem em vez de falhar.</li>
+            <li>Pede confirmação antes de comandos destrutivos e antes de enviar e-mail para outras pessoas.</li>
+          </ul>
+          <ul lang="en">
+            <li>Wake word I trained myself, with 93.8% recall on clean audio and about 2 false alarms per hour. Trained on synthetic voices, real room audio and look-alike words such as <q>guaraná</q> and <q>agora</q>.</li>
+            <li>Function-calling loop with a round cap: when it hits the cap, Guará answers with what it has instead of failing.</li>
+            <li>Asks for confirmation before destructive commands and before emailing other people.</li>
+          </ul>
+
+          <p class="project-link"><a href="https://github.com/jvfsdev/Guara"><span lang="pt-BR">Ver código no GitHub</span><span lang="en">View source on GitHub</span></a></p>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3 class="project-name">Airport Vision System</h3>
+        <p class="project-stack">C++, OpenCV, PTZ</p>
+        <div class="project-desc">
+          <p lang="pt-BR">Sistema de monitoramento de aeroporto com câmera PTZ. Reescrevi tudo de Python para C++ e o uso de CPU do servidor caiu de 80–90% num Intel i9 para cerca de 7% num i3. A câmera percorre nove posições em loop, mostra preview ao vivo e monta um mosaico com a última imagem de cada uma. Código privado.</p>
+          <p lang="en">An airport monitoring system built around a PTZ camera. I rewrote it from Python to C++ and server CPU use dropped from 80–90% on an Intel i9 to about 7% on an i3. The camera loops through nine positions, streams a live preview and builds a mosaic from the last frame of each. Private code.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3 class="project-name">Airport Staff Manager</h3>
+        <p class="project-stack">Java, Spring Boot, SQL</p>
+        <div class="project-desc">
+          <p lang="pt-BR">Plataforma de gestão de pessoal que fiz do zero para equipes de várias estações de controle de tráfego aéreo: cadastro, férias, escalas, validade de certificados médicos e e-mails automáticos. Código privado.</p>
+          <p lang="en">A staff-management platform I built from scratch for teams across several air-traffic stations: records, vacations, shift schedules, medical certificate expiry and automatic emails. Private code.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3 class="project-name">Smart Desk AI</h3>
+        <p class="project-stack">Python, OpenCV, ArUco</p>
+        <div class="project-desc">
+          <p lang="pt-BR">Monitoramento da minha bancada rodando num celular reaproveitado. Marcadores ArUco delimitam a mesa e calibram a escala real, e o sistema identifica objetos sobre ela. Esse contexto fica disponível para agentes de IA e para a casa inteligente.</p>
+          <p lang="en">Monitoring for my desk, running on a repurposed phone. ArUco markers outline the desk and calibrate real-world scale, and the system identifies objects on it. That context is exposed to AI agents and the smart home.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3 class="project-name">advSaas</h3>
+        <p class="project-stack">Swift, APNs</p>
+        <div class="project-desc">
+          <p lang="pt-BR">App iOS desenvolvido em dupla, de ponta a ponta: assinatura manual, distribuição pelo Transporter e infraestrutura de notificações push.</p>
+          <p lang="en">An iOS app co-developed end to end: manual code signing, distribution through Transporter and push-notification infrastructure.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3 class="project-name"><span lang="pt-BR">Investimento com Q-Learning</span><span lang="en">Investing with Q-Learning</span></h3>
+        <p class="project-stack">Python, Gymnasium</p>
+        <div class="project-desc">
+          <p lang="pt-BR">Ambiente de aprendizado por reforço próprio, com estados discretizados sobre dados da PETR4, para aprender uma política de investimento.</p>
+          <p lang="en">A custom reinforcement-learning environment with discretized states over PETR4 stock data, used to learn an investment policy.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3 class="project-name">MacBook Lid Toggle</h3>
+        <p class="project-stack">macOS</p>
+        <div class="project-desc">
+          <p lang="pt-BR">Utilitário pequeno que impede o MacBook de dormir com a tampa fechada. Fiz para manter sessões de IA local rodando sem precisar de monitor externo.</p>
+          <p lang="en">A small utility that keeps a MacBook awake with the lid closed. I made it to keep local AI sessions running without an external monitor.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section" id="stack">
+    <h2 class="section-title"><span lang="pt-BR">Ferramentas</span><span lang="en">Tools</span></h2>
+    <div class="section-body">
+      <dl class="stack">
+        <div><dt><span lang="pt-BR">Linguagens</span><span lang="en">Languages</span></dt><dd>C++, Python, Java</dd></div>
+        <div><dt>Backend</dt><dd>Spring Boot, REST, SQL</dd></div>
+        <div><dt><span lang="pt-BR">IA e visão</span><span lang="en">AI and vision</span></dt><dd>OpenCV, <span lang="pt-BR">detecção de objetos</span><span lang="en">object detection</span>, function calling, MCP</dd></div>
+        <div><dt><span lang="pt-BR">Infraestrutura</span><span lang="en">Infrastructure</span></dt><dd>Linux, Docker, Git, AWS, Firebase</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="competicoes">
+    <h2 class="section-title"><span lang="pt-BR">Competições</span><span lang="en">Competitions</span></h2>
+    <div class="section-body">
+      <ul class="plain">
+        <li><span lang="pt-BR">Maratona de Programação da SBC (regional do ICPC): 2025 e 2026</span><span lang="en">SBC Programming Marathon (ICPC regional): 2025 and 2026</span></li>
+        <li><span lang="pt-BR">Maratona Mineira de Programação: todas as edições de 2025 e 2026</span><span lang="en">Maratona Mineira de Programação: every edition in 2025 and 2026</span></li>
+        <li><span lang="pt-BR">OBMEP: ouro regional em 2023, prata em 2018, bronze em 2019</span><span lang="en">OBMEP (Brazilian math olympiad): regional gold in 2023, silver in 2018, bronze in 2019</span></li>
+        <li><span lang="pt-BR">Olimpíada Nacional de Ciências: medalha de ouro em 2021</span><span lang="en">National Science Olympiad: gold medal in 2021</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="contato">
+    <h2 class="section-title"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></h2>
+    <div class="section-body">
+      <ul class="plain contact">
+        <li><a href="mailto:jvfsdev@gmail.com">jvfsdev@gmail.com</a></li>
+        <li><a href="https://github.com/jvfsdev">github.com/jvfsdev</a></li>
+        <li><a href="https://linkedin.com/in/jvfsdev">linkedin.com/in/jvfsdev</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p lang="pt-BR">Feito à mão, sem framework. Juiz de Fora, MG.</p>
+  <p lang="en">Handmade, no framework. Juiz de Fora, Brazil.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
