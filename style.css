@@ -52,7 +52,7 @@ a:hover {
 
 .hero {
   position: relative;
-  min-height: clamp(26rem, 52vw, 40rem);
+  min-height: clamp(30rem, 52vw, 40rem);
   background: var(--crt);
   color: var(--phosphor);
   overflow: hidden;
@@ -142,6 +142,28 @@ a:hover {
   max-width: 30rem;
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   line-height: 1.5;
+}
+
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin: 1.25rem 0 0;
+  font-size: 0.95rem;
+}
+
+.hero-links a {
+  color: var(--phosphor);
+  text-decoration-color: rgba(232, 228, 216, 0.45);
+}
+
+.hero-links a:hover {
+  color: var(--phosphor);
+  text-decoration-color: var(--phosphor);
+}
+
+.hero-links a:focus-visible {
+  outline-color: var(--phosphor);
 }
 
 .cursor {
@@ -241,9 +263,160 @@ a:hover {
   quotes: "“" "”" "‘" "’";
 }
 
-.project-link {
+.project-name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-name a:hover {
+  text-decoration: underline;
+}
+
+.project-figure {
+  display: block;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--crt);
+}
+
+.project-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
   margin-bottom: 0;
   font-weight: 600;
+}
+
+/* The before/after CPU figure for the C++ rewrite */
+.metric {
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--crt);
+  color: var(--phosphor);
+  border-radius: 3px;
+}
+
+.metric-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  font-family: "VT323", monospace;
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  line-height: 1;
+}
+
+.metric-from {
+  color: rgba(232, 228, 216, 0.5);
+  text-decoration: line-through;
+  text-decoration-thickness: 0.06em;
+}
+
+.metric-arrow {
+  width: 2.5rem;
+  height: 2px;
+  background: rgba(232, 228, 216, 0.5);
+  position: relative;
+}
+
+.metric-arrow::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -4px;
+  border: 5px solid transparent;
+  border-left: 7px solid rgba(232, 228, 216, 0.5);
+  border-right: 0;
+}
+
+.metric figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: rgba(232, 228, 216, 0.75);
+}
+
+.subhead {
+  margin: 2.5rem 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.mini-projects {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mini-projects li {
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.mini-projects p {
+  margin: 0;
+}
+
+.mini-projects .mini-name {
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.mini-stack {
+  margin-left: 0.4rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.note {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Experience, newest first */
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline > li {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.timeline > li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.timeline p {
+  margin: 0;
+}
+
+.timeline .when {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline .what {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
 }
 
 /* Stack, competitions, contact */
@@ -306,6 +479,131 @@ a:hover {
   margin: 0;
 }
 
+/* Project pages */
+
+.page-head {
+  background: var(--crt);
+  color: var(--phosphor);
+}
+
+.page-head .nav {
+  justify-content: space-between;
+}
+
+.home-link {
+  margin-right: auto;
+  font-family: "VT323", monospace;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.case {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 4rem) var(--gutter) clamp(3rem, 7vw, 5rem);
+}
+
+.case-title {
+  margin: 0;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.case-lead {
+  margin: 0.75rem 0 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.case-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.75rem 1.5rem;
+  margin: 0 0 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.case-facts dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.case-facts dd {
+  margin: 0;
+}
+
+.case h2 {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.case p,
+.case ul,
+.case ol {
+  margin: 0 0 1em;
+}
+
+.case li {
+  margin-bottom: 0.5em;
+}
+
+.case .project-figure,
+.case .metric {
+  margin: 1.5rem 0;
+}
+
+.case + .footer {
+  max-width: 46rem;
+}
+
+.case-back {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* 404 */
+
+.panic {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem var(--gutter);
+  background: var(--crt);
+  color: var(--phosphor);
+  font-family: "VT323", monospace;
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  line-height: 1.3;
+}
+
+.panic pre {
+  margin: 0 0 2rem;
+  font: inherit;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.panic .dim {
+  color: rgba(232, 228, 216, 0.5);
+}
+
+.panic a {
+  color: var(--phosphor);
+  font-family: "Literata", Georgia, serif;
+  font-size: 1.05rem;
+}
+
+.panic a:focus-visible {
+  outline-color: var(--phosphor);
+}
+
 /* Small screens: image on top, text below it */
 
 @media (max-width: 760px) {
@@ -353,9 +651,15 @@ a:hover {
     color: var(--muted);
   }
 
-  .stack > div {
+  .stack > div,
+  .timeline > li {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+
+  .mini-stack {
+    display: block;
+    margin-left: 0;
   }
 }
 

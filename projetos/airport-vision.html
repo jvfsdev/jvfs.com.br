@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Airport Vision System | João Vitor</title>
+  <meta name="description" content="Reescrita em C++ de um sistema de monitoramento de aeroporto por câmera PTZ: uso de CPU de 80–90% num i9 para cerca de 7% num i3.">
+  <link rel="canonical" href="https://jvfs.com.br/projetos/airport-vision.html">
+  <meta name="theme-color" content="#0a0b0d">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jvfs.com.br/projetos/airport-vision.html">
+  <meta property="og:title" content="Airport Vision System">
+  <meta property="og:description" content="Reescrita em C++ de um sistema de monitoramento de aeroporto: CPU de 80–90% num i9 para ~7% num i3.">
+  <meta property="og:image" content="https://jvfs.com.br/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0b0d'/%3E%3Crect x='9' y='7' width='5' height='18' fill='%23e8e4d8'/%3E%3Crect x='9' y='20' width='14' height='5' fill='%23e8e4d8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="page-head">
+  <nav class="nav" aria-label="Navegação principal">
+    <a class="home-link" href="../">João Vitor</a>
+    <a href="../#projetos"><span lang="pt-BR">Projetos</span><span lang="en">Projects</span></a>
+    <a href="../#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
+    <button class="lang" type="button" id="lang-toggle" aria-label="Mudar idioma / Switch language">
+      <span lang="pt-BR">EN</span><span lang="en">PT</span>
+    </button>
+  </nav>
+</header>
+
+<main class="case">
+  <h1 class="case-title">Airport Vision System</h1>
+  <p class="case-lead" lang="pt-BR">Um sistema de monitoramento de aeroporto por câmera, reescrito de Python para C++ durante o meu estágio na AMD Services.</p>
+  <p class="case-lead" lang="en">An airport camera-monitoring system, rewritten from Python to C++ during my internship at AMD Services.</p>
+
+  <dl class="case-facts">
+    <div><dt><span lang="pt-BR">Papel</span><span lang="en">Role</span></dt><dd><span lang="pt-BR">Reescrita completa</span><span lang="en">Full rewrite</span></dd></div>
+    <div><dt><span lang="pt-BR">Ano</span><span lang="en">Year</span></dt><dd>2025 – 2026</dd></div>
+    <div><dt>Stack</dt><dd>C++17, Qt 6, WebSocket, CMake</dd></div>
+    <div><dt><span lang="pt-BR">Código</span><span lang="en">Code</span></dt><dd><span lang="pt-BR">Privado</span><span lang="en">Private</span></dd></div>
+  </dl>
+
+  <figure class="metric">
+    <p class="metric-row"><span class="metric-from">80–90%</span><span class="metric-arrow" aria-hidden="true"></span><span class="metric-to">7%</span></p>
+    <figcaption lang="pt-BR">Uso de CPU do servidor: antes, em Python num Intel i9; depois, cerca de 7% em C++ num i3.</figcaption>
+    <figcaption lang="en">Server CPU use: before, in Python on an Intel i9; after, about 7% in C++ on an i3.</figcaption>
+  </figure>
+
+  <section lang="pt-BR">
+    <h2>O problema</h2>
+    <p>O sistema monitora as condições de um aeroporto com uma câmera PTZ, que gira e dá zoom sob comando, além de uma câmera fisheye apontada para o céu e dados meteorológicos. A versão original, em Python, deixava um Intel i9 com 80–90% de CPU ocupada o tempo todo. Isso exigia hardware caro e deixava pouca folga para o resto.</p>
+
+    <h2>O que o sistema faz</h2>
+    <ul>
+      <li>A câmera PTZ percorre nove posições em loop. Em cada uma, mostra um preview ao vivo e guarda o último quadro.</li>
+      <li>Os nove quadros formam um mosaico 3×3, ao lado da câmera fisheye e dos dados meteorológicos.</li>
+      <li>Vários operadores podem assistir ao mesmo tempo. Só um controla a câmera; os outros podem pedir o controle, e ele passa automaticamente para o próximo se o operador atual sair.</li>
+    </ul>
+
+    <h2>A reescrita</h2>
+    <p>Refiz o sistema em C++17 com Qt 6, separado em um servidor, que fala com as câmeras e monta o mosaico, e um cliente de visualização, ligados por WebSocket. O servidor transmite as imagens para todos os clientes a cerca de 30 quadros por segundo, e compila para Windows, Linux e macOS. Um serviço de watchdog acompanha o servidor e o reinicia se algo der errado.</p>
+    <p>Com isso, o uso de CPU caiu para cerca de 7%, agora num Intel i3. O sistema passou a rodar numa máquina bem mais barata, com folga.</p>
+
+    <h2>O que aprendi</h2>
+    <p>Medir antes de otimizar e escolher a ferramenta certa para cada parte. Python foi ótimo para validar a ideia, mas um serviço que processa vídeo sem parar, por anos, pede o controle de memória e de threads que C++ e Qt oferecem.</p>
+    <p class="note">O código pertence à AMD Services e não é público. Esta página descreve apenas o comportamento do sistema e os resultados.</p>
+  </section>
+
+  <section lang="en">
+    <h2>The problem</h2>
+    <p>The system monitors conditions at an airport with a PTZ camera, which pans, tilts and zooms on command, plus a fisheye camera pointed at the sky and weather data. The original Python version kept an Intel i9 at 80–90% CPU all the time. That demanded expensive hardware and left little headroom for anything else.</p>
+
+    <h2>What the system does</h2>
+    <ul>
+      <li>The PTZ camera loops through nine positions. At each one it shows a live preview and keeps the last frame.</li>
+      <li>The nine frames form a 3×3 mosaic, next to the fisheye camera and the weather data.</li>
+      <li>Several operators can watch at once. Only one controls the camera; the others can request control, and it passes to the next one automatically if the current operator leaves.</li>
+    </ul>
+
+    <h2>The rewrite</h2>
+    <p>I rebuilt the system in C++17 with Qt 6, split into a server, which talks to the cameras and builds the mosaic, and a viewer client, connected over WebSocket. The server streams frames to every client at about 30 frames per second, and it builds for Windows, Linux and macOS. A watchdog service monitors the server and restarts it if something goes wrong.</p>
+    <p>CPU use dropped to about 7%, now on an Intel i3. The system moved to a much cheaper machine, with room to spare.</p>
+
+    <h2>What I learned</h2>
+    <p>Measure before optimizing, and pick the right tool for each part. Python was great for proving the idea, but a service that processes video nonstop, for years, calls for the control over memory and threads that C++ and Qt provide.</p>
+    <p class="note">The code belongs to AMD Services and is not public. This page only describes the system's behavior and results.</p>
+  </section>
+
+  <p class="case-back"><a href="../#projetos"><span lang="pt-BR">Voltar para os projetos</span><span lang="en">Back to projects</span></a></p>
+</main>
+
+<footer class="footer">
+  <p lang="pt-BR">Feito à mão, sem framework. Juiz de Fora, MG.</p>
+  <p lang="en">Handmade, no framework. Juiz de Fora, Brazil.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

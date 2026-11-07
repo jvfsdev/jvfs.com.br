@@ -2,10 +2,15 @@
 
 Site estático em HTML, CSS e um pouco de JavaScript. Sem framework, sem build.
 
-- `index.html`: o conteúdo, em português e inglês (cada texto tem `lang="pt-BR"` e `lang="en"`)
-- `style.css`: o visual
+- `index.html`: a página principal, em português e inglês (cada texto tem `lang="pt-BR"` e `lang="en"`)
+- `projetos/`: uma página para cada projeto em destaque
+- `404.html`: a página de endereço não encontrado
+- `style.css`: o visual de todas as páginas
 - `script.js`: o botão PT/EN
-- `assets/`: imagens
+- `assets/`: imagens, a prévia de compartilhamento (`og.jpg`) e os currículos em PDF (`cv/`)
+- `sitemap.xml` e `robots.txt`: para o Google
+
+Ao adicionar uma página nova, inclua-a também no `sitemap.xml`.
 
 ## Ver no seu computador
 

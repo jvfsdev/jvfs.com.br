@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guará, assistente pessoal | João Vitor</title>
+  <meta name="description" content="Como funciona o Guará, um assistente pessoal de código aberto que roda em casa, com palavra de ativação treinada do zero.">
+  <link rel="canonical" href="https://jvfs.com.br/projetos/guara.html">
+  <meta name="theme-color" content="#0a0b0d">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jvfs.com.br/projetos/guara.html">
+  <meta property="og:title" content="Guará, assistente pessoal">
+  <meta property="og:description" content="Assistente de código aberto que roda em casa, com palavra de ativação treinada do zero.">
+  <meta property="og:image" content="https://jvfs.com.br/assets/projetos/guara.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0b0d'/%3E%3Crect x='9' y='7' width='5' height='18' fill='%23e8e4d8'/%3E%3Crect x='9' y='20' width='14' height='5' fill='%23e8e4d8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="page-head">
+  <nav class="nav" aria-label="Navegação principal">
+    <a class="home-link" href="../">João Vitor</a>
+    <a href="../#projetos"><span lang="pt-BR">Projetos</span><span lang="en">Projects</span></a>
+    <a href="../#contato"><span lang="pt-BR">Contato</span><span lang="en">Contact</span></a>
+    <button class="lang" type="button" id="lang-toggle" aria-label="Mudar idioma / Switch language">
+      <span lang="pt-BR">EN</span><span lang="en">PT</span>
+    </button>
+  </nav>
+</header>
+
+<main class="case">
+  <h1 class="case-title">Guará</h1>
+  <p class="case-lead" lang="pt-BR">Um assistente pessoal que mora num computador velho, em casa. Você fala com ele pelo Telegram ou chama em voz alta na sala: <q>Ô, Guará.</q></p>
+  <p class="case-lead" lang="en">A personal assistant that lives on an old computer at home. You talk to it on Telegram or call it out loud in the room: <q>Ô, Guará.</q></p>
+
+  <dl class="case-facts">
+    <div><dt><span lang="pt-BR">Papel</span><span lang="en">Role</span></dt><dd><span lang="pt-BR">Autor único</span><span lang="en">Sole author</span></dd></div>
+    <div><dt><span lang="pt-BR">Tamanho</span><span lang="en">Size</span></dt><dd><span lang="pt-BR">~9.000 linhas, 17 módulos</span><span lang="en">~9,000 lines, 17 modules</span></dd></div>
+    <div><dt><span lang="pt-BR">Licença</span><span lang="en">License</span></dt><dd>MIT</dd></div>
+    <div><dt>Stack</dt><dd>Python, Gemini, MCP, PyTorch, ONNX</dd></div>
+  </dl>
+
+  <a class="project-figure" href="https://github.com/jvfsdev/Guara">
+    <img src="../assets/projetos/guara.webp" alt="Capa do Guará: o nome em letras grandes, o lema “Sarcástico, mas avisa antes” e um lobo-guará estilizado em preto sobre laranja" width="1280" height="640">
+  </a>
+
+  <section lang="pt-BR">
+    <h2>O que ele faz</h2>
+    <p>O Guará roda 24 horas como um serviço do Linux, num notebook antigo ou num Raspberry Pi. Ele lê e resume e-mails de várias contas Google e Outlook, marca compromissos, controla a casa pelo Home Assistant e sabe quando eu saio e chego pelo GPS do celular. Também mostra saldos e faturas via Open Finance, só para leitura.</p>
+    <p>Dá para pedir que ele vigie algo (<q>me avisa quando chegar o e-mail do banco</q>), mandar o Claude Code do meu Mac trabalhar num projeto, ou ligar outro computador pela rede. A configuração toda é feita por um painel web que só abre na rede de casa.</p>
+
+    <h2>Como o agente decide</h2>
+    <p>O cérebro é o Gemini, com function calling sobre 17 módulos de ferramentas. Três decisões de projeto deixaram isso confiável no dia a dia:</p>
+    <ul>
+      <li><strong>Loop com teto de rodadas.</strong> Se uma tarefa passa do limite de chamadas, o Guará responde com o que já tem em vez de dar erro. Uma tarefa longa e legítima não morre, e um loop descontrolado não queima a cota.</li>
+      <li><strong>Escada de modelos.</strong> Quando um modelo ou uma chave do Gemini atinge o limite gratuito, ele desce para o próximo e continua a conversa.</li>
+      <li><strong>Humano no circuito.</strong> Apagar arquivos, rodar comandos de administrador ou mandar e-mail para outra pessoa só acontece depois que eu confirmo.</li>
+    </ul>
+    <p>Uma ponte MCP permite plugar servidores externos de Model Context Protocol como se fossem ferramentas nativas.</p>
+
+    <h2>A palavra de ativação</h2>
+    <p>Nenhum modelo pronto entendia <q>Ô, Guará</q>, então treinei o meu, sem gravar centenas de vezes a minha voz:</p>
+    <ol>
+      <li>Gerei os exemplos positivos com cerca de 25 vozes sintéticas, de macOS e neurais da Microsoft, com ritmos e sotaques variados.</li>
+      <li>Para não acordar à toa, juntei negativos de palavras parecidas, sozinhas e dentro de frases (<q>guaraná</q>, <q>agora</q>, <q>aguarda</q>), e cerca de 11 horas de fala, música e ruído.</li>
+      <li>Simulei uma sala de verdade, com eco, ruído e microfone ruim, e treinei um classificador sobre os embeddings de áudio do openWakeWord.</li>
+      <li>Fiz duas rodadas em cima dos próprios erros (mineração de negativos difíceis) e escolhi o limiar pela curva de acerto contra alarmes falsos, medida em vozes que o modelo nunca ouviu.</li>
+    </ol>
+    <p>O resultado tem 93,8% de acerto em áudio limpo e cerca de 2 alarmes falsos por hora, num arquivo ONNX de ~600 KB que roda até em notebook velho. Depois, ele continua aprendendo com a sala: guarda trechos curtos de quando acordou ou quase acordou, e no painel eu marco <q>era eu</q> ou <q>não era</q>.</p>
+
+    <h2>Limites</h2>
+    <p>O Guará roda em casa, mas o cérebro é o Gemini, então as conversas passam pelo Google. O áudio da sala, por outro lado, nunca sai do computador: ficam guardados no máximo 300 trechos curtos, só para calibrar a palavra de ativação.</p>
+  </section>
+
+  <section lang="en">
+    <h2>What it does</h2>
+    <p>Guará runs around the clock as a Linux service on an old laptop or a Raspberry Pi. It reads and summarizes email from several Google and Outlook accounts, books meetings, controls the house through Home Assistant and knows when I leave or arrive from my phone's GPS. It also shows balances and card bills through Open Finance, read-only.</p>
+    <p>I can ask it to watch for something (<q>tell me when the bank's email arrives</q>), send the Claude Code on my Mac to work on a project, or wake another computer over the network. Everything is configured from a web panel that only opens on the home network.</p>
+
+    <h2>How the agent decides</h2>
+    <p>The brain is Gemini, with function calling over 17 tool modules. Three design decisions made it dependable day to day:</p>
+    <ul>
+      <li><strong>A capped loop.</strong> If a task goes past the call limit, Guará answers with what it has instead of failing. A long, legitimate task never dies, and a runaway loop never burns the quota.</li>
+      <li><strong>A model ladder.</strong> When a Gemini model or API key hits its free limit, it steps down to the next one and keeps the conversation going.</li>
+      <li><strong>A human in the loop.</strong> Deleting files, running admin commands or emailing someone else only happens after I confirm.</li>
+    </ul>
+    <p>An MCP bridge lets external Model Context Protocol servers plug in as if they were native tools.</p>
+
+    <h2>The wake word</h2>
+    <p>No off-the-shelf model understood <q>Ô, Guará</q>, so I trained my own, without recording my voice hundreds of times:</p>
+    <ol>
+      <li>I generated the positive examples with about 25 synthetic voices, from macOS and Microsoft's neural voices, with varied pace and accents.</li>
+      <li>To avoid false wakes, I gathered negatives from look-alike words, alone and inside sentences (<q>guaraná</q>, <q>agora</q>, <q>aguarda</q>), plus about 11 hours of speech, music and noise.</li>
+      <li>I simulated a real room, with echo, noise and a bad microphone, and trained a classifier on openWakeWord's audio embeddings.</li>
+      <li>I ran two rounds on its own mistakes (hard-negative mining) and picked the threshold from the recall versus false-alarm curve, measured on voices the model had never heard.</li>
+    </ol>
+    <p>The result reaches 93.8% recall on clean audio with about 2 false alarms per hour, in a ~600 KB ONNX file that runs even on an old laptop. After that it keeps learning from the room: it saves short clips from when it woke or almost woke, and in the panel I mark <q>that was me</q> or <q>that wasn't me</q>.</p>
+
+    <h2>Limits</h2>
+    <p>Guará runs at home, but its brain is Gemini, so conversations go through Google. Room audio, on the other hand, never leaves the computer: at most 300 short clips are kept, only to calibrate the wake word.</p>
+  </section>
+
+  <p class="project-links">
+    <a href="https://github.com/jvfsdev/Guara"><span lang="pt-BR">Código no GitHub</span><span lang="en">Source on GitHub</span></a>
+  </p>
+
+  <p class="case-back"><a href="../#projetos"><span lang="pt-BR">Voltar para os projetos</span><span lang="en">Back to projects</span></a></p>
+</main>
+
+<footer class="footer">
+  <p lang="pt-BR">Feito à mão, sem framework. Juiz de Fora, MG.</p>
+  <p lang="en">Handmade, no framework. Juiz de Fora, Brazil.</p>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
