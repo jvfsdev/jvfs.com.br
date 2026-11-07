@@ -272,6 +272,17 @@ a:hover {
   text-decoration: underline;
 }
 
+.award {
+  display: inline-block;
+  margin: 0.4rem 0 0.1rem;
+  padding: 0.15rem 0.6rem;
+  background: var(--crt);
+  color: var(--phosphor);
+  border-radius: 2px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
 .project-figure {
   display: block;
   margin-bottom: 1.25rem;
@@ -304,7 +315,7 @@ a:hover {
   border-radius: 3px;
 }
 
-.metric-row {
+.metric .metric-row {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -671,4 +682,8 @@ a:hover {
   .cursor {
     animation: none;
   }
+}
+
+.nowrap {
+  white-space: nowrap;
 }
